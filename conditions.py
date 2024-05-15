@@ -3,7 +3,7 @@
 b = bool
 
 {
-    "key": true
+    "key": True
 }
 
 t = True
@@ -18,7 +18,7 @@ if True:
 if not False:
     print("я никогда не выполняюсь")
 
-    code = "1000"
+    code = 400
 
     if 200 <= code < 400:
         print("Проверка прошла, хороший ответ!")
@@ -26,4 +26,37 @@ if not False:
         print("плохой ответ")
     else:
         print("какой-то странный код")
+
+        #пустой объект
+    user_list = []
+
+    if user_list == []:
+        pass
+
+    if user_list:
+        pass
+
+    items_count = 0
+
+    if items_count:
+        pass
+
+    if "abc" == "":
+        pass
+
+    if "abs":
+        pass
+
+    print(bool(100))
+    print(bool(-100))
+    print(bool(0))
+
+
+    print(bool("abc"))
+    print(bool(""))
+
+    print(bool([]))
+    print(bool([1, 2, 3]))
+    print(bool([False]))
+
 
