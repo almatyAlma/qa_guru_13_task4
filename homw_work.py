@@ -1,33 +1,26 @@
 from datetime import time
 def test_dark_theme_by_time():
-    current_time = time(hour=23)
-    if time(6)<= current_time <= time(22):
-        is_dark_theme = False
-        print('Светлая тема')
-    else:
+    current_time = time(hour=5)
+    if current_time.hour > 22 or current_time.hour < 6:
         is_dark_theme = True
-        print('Светлая тема')
-        assert is_dark_theme is True
+    else:
+        is_dark_theme = False
+
+    assert is_dark_theme is True
 
 def test_dark_theme_by_time_and_user_choice():
-    current_time = time(hour=16)
+    current_time = time(hour=8)
     dark_theme_enabled_by_user = True
-    is_dark_theme = None
-    if dark_theme_enabled_by_user is True:
+
+    if dark_theme_enabled_by_user:
         is_dark_theme = True
-        print('Принудительно включена темная тема.')
-    elif dark_theme_enabled_by_user is False:
-        is_dark_theme = False
-        print('Принудительно включена светлая тема.')
     elif dark_theme_enabled_by_user is None:
-        if time(6) <= current_time <= time(22):
-            is_dark_theme = False
-            print('Включена светлая тема по времени.')
-        else:
+        if current_time.hour >= 22 or current_time.hour < 6:
             is_dark_theme = True
-            print('Включена темная тема по времени.')
+        else:
+            is_dark_theme = False
     else:
-        print('Невозможоно определить время.')
+        is_dark_theme = False
 
     assert is_dark_theme is True
 
@@ -56,6 +49,29 @@ def test_find_suitable_user():
             print("Пользовтель младше 20 лет: ", suitable_users)
 
 
+def beautify_readable_function(name, *args):
+    return f"{name.__name__.replace('_', ' ').title()} [{', '.join([*args])}]"
+
+
+def test_readable_function():
+    open_browser(browser_name="Chrome")
+    go_to_companyname_homepage(page_url="https://companyname.com")
+    find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
+
+
+def open_browser(browser_name):
+    actual_result = beautify_readable_function(open_browser, browser_name)
+    assert actual_result == "Open Browser [Chrome]"
+
+
+def go_to_companyname_homepage(page_url):
+    actual_result = beautify_readable_function(go_to_companyname_homepage, page_url)
+    assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
+
+
+def find_registration_button_on_login_page(page_url, button_text):
+    actual_result = beautify_readable_function(find_registration_button_on_login_page, page_url, button_text)
+    assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
 
 
 
