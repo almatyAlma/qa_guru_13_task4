@@ -9,10 +9,8 @@ def test_dark_theme_by_time():
     # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
     if time(6) <= current_time <= time(22):
         is_dark_theme = False
-        print('Включена светлая тема.')
     else:
         is_dark_theme = True
-        print('Включена темная тема.')
 
     assert is_dark_theme is True
 
@@ -33,19 +31,13 @@ def test_dark_theme_by_time_and_user_choice():
 
     if dark_theme_enabled_by_user is True:
         is_dark_theme = True
-        print('Принудительно включена темная тема.')
     elif dark_theme_enabled_by_user is False:
         is_dark_theme = False
-        print('Принудительно включена светлая тема.')
     elif dark_theme_enabled_by_user is None:
         if time(6) <= current_time <= time(22):
             is_dark_theme = False
-            print('Включена светлая тема по времени.')
         else:
             is_dark_theme = True
-            print('Включена темная тема по времени.')
-    else:
-        print('Невозможоно определить время.')
 
     assert is_dark_theme is True
 
@@ -76,7 +68,6 @@ def test_find_suitable_user():
     for user in users:
         if user['age'] < 20:
             suitable_users.append(user)
-            print("Пользователи младше 20 лет: ", suitable_users)
     assert suitable_users == [
         {"name": "Stanislav", "age": 15},
         {"name": "Maria", "age": 18},
@@ -93,8 +84,8 @@ def test_find_suitable_user():
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
 
-def beautify_readable_function(name, *args):
-    return f"{name.__name__.replace('_', ' ').title()} [{', '.join([*args])}]"
+def beautify_readable_function(fun, *args):
+    return f"{fun.__name__.replace('_', ' ').title()} [{', '.join([*args])}]"
 
 
 def test_readable_function():
