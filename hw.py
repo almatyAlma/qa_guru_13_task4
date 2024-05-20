@@ -59,7 +59,6 @@ def test_find_suitable_user():
     for user in users:
         if user['name'] == "Olga":
             suitable_users = user
-            print(suitable_users)
 
     assert suitable_users == {"name": "Olga", "age": 45}
 
